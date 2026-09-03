@@ -1,5 +1,7 @@
 import { clerkMiddleware } from '@clerk/nextjs/server';
 
+// Authentication checks are done at the resource level (pages, route handlers)
+// rather than in middleware. See: https://clerk.com/docs/guides/development/upgrading/upgrade-guides/migrate-from-create-route-matcher
 export default clerkMiddleware();
 
 export const config = {
