@@ -4,7 +4,7 @@ allowBuilds:
   sharp: true
   unrs-resolver: true
   msw: false
-  bufferutil: set this to true or false
-  core-js: set this to true or false
-  utf-8-validate: set this to true or false
+  bufferutil: true
+  core-js: true
+  utf-8-validate: true
   esbuild: true
