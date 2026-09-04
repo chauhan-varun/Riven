@@ -1,16 +1,11 @@
 import type { Metadata } from "next"
-import {
-  ClerkProvider,
-  Show,
-  SignInButton,
-  SignUpButton,
-  UserButton,
-} from "@clerk/nextjs"
+import { ClerkProvider } from "@clerk/nextjs"
 import { shadcn } from "@clerk/ui/themes"
 import { Geist, Geist_Mono } from "next/font/google"
 import "@clerk/ui/themes/shadcn.css"
 import "./globals.css"
 import ConvexClientProvider from "@/components/ConvexClientProvider"
+import ReduxProvider from "@/redux/provider"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,22 +34,11 @@ export default function RootLayout({
     >
       <body className="flex min-h-full flex-col">
         <ClerkProvider appearance={{ theme: shadcn }}>
-          <ConvexClientProvider>
-            <header className="flex h-16 items-center justify-end gap-4 p-4">
-              <Show when="signed-out">
-                <SignInButton />
-                <SignUpButton>
-                  <button className="h-10 cursor-pointer rounded-full bg-purple-700 px-4 text-sm font-medium text-white sm:h-12 sm:px-5 sm:text-base">
-                    Sign Up
-                  </button>
-                </SignUpButton>
-              </Show>
-              <Show when="signed-in">
-                <UserButton />
-              </Show>
-            </header>
-            {children}
-          </ConvexClientProvider>
+          <ReduxProvider>
+            <ConvexClientProvider>
+              {children}
+            </ConvexClientProvider>
+          </ReduxProvider>
         </ClerkProvider>
       </body>
     </html>
