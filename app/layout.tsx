@@ -5,6 +5,7 @@ import { Geist, Geist_Mono } from "next/font/google"
 import "@clerk/ui/themes/shadcn.css"
 import "./globals.css"
 import ConvexClientProvider from "@/components/ConvexClientProvider"
+import ReduxProvider from "@/redux/provider"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,9 +34,11 @@ export default function RootLayout({
     >
       <body className="flex min-h-full flex-col">
         <ClerkProvider appearance={{ theme: shadcn }}>
-          <ConvexClientProvider>
-            {children}
-          </ConvexClientProvider>
+          <ReduxProvider>
+            <ConvexClientProvider>
+              {children}
+            </ConvexClientProvider>
+          </ReduxProvider>
         </ClerkProvider>
       </body>
     </html>
